@@ -21,8 +21,15 @@ function addBook(){
 	alert(library.books[0].info());
 }
 
+function renderLibrary(){
+	for(let i = 0; i < library.books.length; i++){
+		console.log("there is a book");
+	}
+}
+
 function pageLoaded(){
 	let form = document.getElementById("form");
 	form.addEventListener("submit", addBook, false);
 	/* render library */
+	renderLibrary();
 }
