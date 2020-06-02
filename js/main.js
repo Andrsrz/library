@@ -6,8 +6,9 @@ function pageLoaded(){
 	form.addEventListener("submit", addBook, false);
 
 	if(storageAvailable('localStorage')){
-		saveToStorage();
-		addClearStorageButton();
+		if(getFromStorage()){
+			addClearStorageButton();
+		}
 	}else {
 		alert("WARNING! Your browser doesn't support local storage. To use this app \
 			change the browser.");
@@ -48,15 +49,19 @@ function saveToStorage(){
 }
 
 function getFromStorage(){
+	let storage = false;
 	library.books = clearArray(library.books);
 
 	let test = localStorage.getItem('libraryArr');
 	let arr = JSON.parse(test);
 
 	for(let i = 0; i < arr.length; i++){
+		storage = true;
 		let book = new Book(arr[i].title, arr[i].author, arr[i].pages, arr[i].read);
 		library.books.push(book);
 	}
+
+	return storage;
 }
 
 function clearArray(arr){
@@ -104,11 +109,9 @@ function addBook(){
 
 function renderLibrary(){
 	let libraryContainer = document.getElementById("library");
+	let noBook = document.getElementById("no-book");
 	if(library.books.length != 0){
-		let noBook = document.getElementById("no-book");
-		if(noBook)
-			noBook.style.display = "none";
-
+		noBook.style.display = "none";
 		for(let i = 0; i < library.books.length; i++){
 			let book = document.createElement("div");
 			book.setAttribute("class", "book");
@@ -118,12 +121,6 @@ function renderLibrary(){
 			libraryContainer.appendChild(book);
 		}
 	}else{
-		let noBook = document.createElement("div");
-		noBook.setAttribute("id", "no-book");
-		let noBookInfo = document.createElement("h2");
-		noBookInfo.setAttribute("class", "error");
-		noBookInfo.innerHTML = "You don't have any books, add some!";
-		noBook.appendChild(noBookInfo);
-		libraryContainer.appendChild(noBook);
+		noBook.style.display = "inline";
 	}
 }
