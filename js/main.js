@@ -7,6 +7,7 @@ function pageLoaded(){
 
 	if(storageAvailable('localStorage')){
 		getFromStorage();
+		addClearStorageButton();
 	}else {
 		alert("WARNING! Your browser doesn't support local storage. To use this app \
 			change the browser.");
@@ -47,7 +48,7 @@ function saveToStorage(){
 }
 
 function getFromStorage(){
-	library.books = cleanArray(library.books);
+	library.books = clearArray(library.books);
 
 	let test = localStorage.getItem('libraryArr');
 	let arr = JSON.parse(test);
@@ -58,11 +59,27 @@ function getFromStorage(){
 	}
 }
 
-function cleanArray(arr){
+function clearArray(arr){
 	for(let i = 0; i < arr.length; i++){
 		arr.pop();
 	}
 	return arr;
+}
+
+function addClearStorageButton(){
+	let container = document.getElementById("buttons-container");
+	let clearStorage = document.createElement("button");
+	clearStorage.setAttribute("id", "btn-clear-storage");
+	clearStorage.setAttribute("onclick", "clearStorage();");
+	let text = document.createElement("h3");
+	text.innerHTML = "Clear Storage";
+	clearStorage.appendChild(text);
+	container.appendChild(clearStorage);
+}
+
+function clearStorage(){
+	localStorage.clear();
+	renderLibrary();
 }
 
 function loadAddBookForm(){
