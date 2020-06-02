@@ -14,7 +14,6 @@ function pageLoaded(){
 			change the browser.");
 	}
 
-	/* render library */
 	renderLibrary();
 }
 
@@ -72,6 +71,7 @@ function clearArray(arr){
 }
 
 function addClearStorageButton(){
+	/* Display button into header */
 	let container = document.getElementById("buttons-container");
 	let clearStorage = document.createElement("button");
 	clearStorage.setAttribute("id", "btn-clear-storage");
@@ -98,6 +98,7 @@ function loadAddBookForm(){
 }
 
 function addBook(){
+	/* Add the new book to our books library's array */
 	let title = document.getElementById("input-title").value;
 	let author = document.getElementById("input-author").value;
 	let pages = document.getElementById("input-pages").value;
@@ -108,6 +109,7 @@ function addBook(){
 }
 
 function renderLibrary(){
+	/* Display each book into the page */
 	let libraryContainer = document.getElementById("library");
 	let noBook = document.getElementById("no-book");
 	if(library.books.length != 0){
