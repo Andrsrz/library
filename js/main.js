@@ -22,7 +22,15 @@ function addBook(){
 }
 
 function renderLibrary(){
-
+	let libraryContainer = document.getElementById("library");
+	for(let i = 0; i < library.books.length; i++){
+		let book = document.createElement("div");
+		book.setAttribute("class", "book");
+		let bookInfo = document.createElement("h4");
+		bookInfo.innerHTML = library.books[i].info();
+		book.appendChild(bookInfo);
+		libraryContainer.appendChild(book);
+	}
 }
 
 function pageLoaded(){
