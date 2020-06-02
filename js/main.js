@@ -2,7 +2,7 @@
 var library = new Library();
 
 function loadAddBookForm(){
-
+	console.log("Works");
 }
 
 function pageLoaded(){
