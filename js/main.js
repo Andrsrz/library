@@ -4,16 +4,16 @@ var library = new Library();
 function pageLoaded(){
 	let form = document.getElementById("form");
 	form.addEventListener("submit", addBook, false);
-	/* render library */
-	let defaultBook = new Book("The Hobbit", "J.R.R. Tolkien", 285, true);
-	library.books.push(defaultBook);
-	renderLibrary();
+
 	if(storageAvailable('localStorage')){
-		alert("Your browser suppot local storage");	
+
 	}else {
 		alert("WARNING! Your browser doesn't support local storage. All your book \
 			will be deleted when you close this page.");
 	}
+
+	/* render library */
+	renderLibrary();
 }
 
 function storageAvailable(type) {
@@ -41,6 +41,15 @@ function storageAvailable(type) {
 	}
 }
 
+function saveToStorage(){
+	/*
+	 * I need to parse the array into string and back into.
+	localStorage.setItem('libraryArr', JSON.stringify(library.books));
+	let test = localStorage.getItem('libraryArr');
+	library.books = JSON.parse(test);
+	*/
+}
+
 function loadAddBookForm(){
 	/* Show the form */
 	let form = document.getElementById("new-book-form-container");
@@ -58,10 +67,16 @@ function addBook(){
 	let read = document.getElementById("input-read").value;
 	let book = new Book(title, author, pages, read);
 	library.books.push(book);
-	alert(library.books[0].info());
+	saveToStorage();
 }
 
 function renderLibrary(){
+	if(library.books.length == 0){
+		let defaultBook = new Book("The Hobbit", "J.R.R. Tolkien", 285, true);
+		library.books.push(defaultBook);
+		saveToStorage();
+	}
+
 	let libraryContainer = document.getElementById("library");
 	for(let i = 0; i < library.books.length; i++){
 		let book = document.createElement("div");
