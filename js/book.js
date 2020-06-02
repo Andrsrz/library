@@ -18,6 +18,6 @@ class Book{
 			readStr = "not read yet";
 		else
 			readStr = "read";
-		return title + " by " + author + ", " + pages + " pages, " + readStr + ".";
+		return this.title + " by " + this.author + ", " + this.pages + " pages, " + readStr + ".";
 	}
 }
