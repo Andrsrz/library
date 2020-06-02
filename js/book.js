@@ -1,4 +1,4 @@
-class Book {
+class Book{
 	/* Default properties values */
 	title = "";
 	author = "";
