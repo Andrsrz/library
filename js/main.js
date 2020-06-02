@@ -6,10 +6,10 @@ function pageLoaded(){
 	form.addEventListener("submit", addBook, false);
 
 	if(storageAvailable('localStorage')){
-
+		getFromStorage();
 	}else {
-		alert("WARNING! Your browser doesn't support local storage. All your book \
-			will be deleted when you close this page.");
+		alert("WARNING! Your browser doesn't support local storage. To use this app \
+			change the browser.");
 	}
 
 	/* render library */
@@ -42,12 +42,27 @@ function storageAvailable(type) {
 }
 
 function saveToStorage(){
-	/*
-	 * I need to parse the array into string and back into.
 	localStorage.setItem('libraryArr', JSON.stringify(library.books));
+	getFromStorage();
+}
+
+function getFromStorage(){
+	library.books = cleanArray(library.books);
+
 	let test = localStorage.getItem('libraryArr');
-	library.books = JSON.parse(test);
-	*/
+	let arr = JSON.parse(test);
+
+	for(let i = 0; i < arr.length; i++){
+		let book = new Book(arr[i].title, arr[i].author, arr[i].pages, arr[i].read);
+		library.books.push(book);
+	}
+}
+
+function cleanArray(arr){
+	for(let i = 0; i < arr.length; i++){
+		arr.pop();
+	}
+	return arr;
 }
 
 function loadAddBookForm(){
@@ -71,19 +86,27 @@ function addBook(){
 }
 
 function renderLibrary(){
-	if(library.books.length == 0){
-		let defaultBook = new Book("The Hobbit", "J.R.R. Tolkien", 285, true);
-		library.books.push(defaultBook);
-		saveToStorage();
-	}
-
 	let libraryContainer = document.getElementById("library");
-	for(let i = 0; i < library.books.length; i++){
-		let book = document.createElement("div");
-		book.setAttribute("class", "book");
-		let bookInfo = document.createElement("h4");
-		bookInfo.innerHTML = library.books[i].info();
-		book.appendChild(bookInfo);
-		libraryContainer.appendChild(book);
+	if(library.books.length != 0){
+		let noBook = document.getElementById("no-book");
+		if(noBook)
+			noBook.style.display = "none";
+
+		for(let i = 0; i < library.books.length; i++){
+			let book = document.createElement("div");
+			book.setAttribute("class", "book");
+			let bookInfo = document.createElement("h4");
+			bookInfo.innerHTML = library.books[i].info();
+			book.appendChild(bookInfo);
+			libraryContainer.appendChild(book);
+		}
+	}else{
+		let noBook = document.createElement("div");
+		noBook.setAttribute("id", "no-book");
+		let noBookInfo = document.createElement("h2");
+		noBookInfo.setAttribute("class", "error");
+		noBookInfo.innerHTML = "You don't have any books, add some!";
+		noBook.appendChild(noBookInfo);
+		libraryContainer.appendChild(noBook);
 	}
 }
