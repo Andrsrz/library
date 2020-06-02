@@ -11,4 +11,13 @@ class Book {
 		this.pages = pages;
 		this.read = read;
 	}
+
+	info(){
+		let readStr = "";
+		if(this.read === false)
+			readStr = "not read yet";
+		else
+			readStr = "read";
+		return title + " by " + author + ", " + pages + " pages, " + readStr + ".";
+	}
 }
