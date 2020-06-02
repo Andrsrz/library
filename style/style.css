@@ -17,3 +17,37 @@ html, body {
 	align-content: center;
 	padding: 10px 10px 0 10px;
 }
+
+#site-main {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-content: center;
+}
+
+#new-book-form-container {
+	display: none;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-content: center;
+}
+
+#form {
+	width: 30%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-content: center;
+}
+
+.block {
+	display: inline;
+	text-align: center;
+}
+
+#library {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-content: center;
+}
