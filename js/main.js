@@ -2,7 +2,6 @@
 var library = new Library();
 
 function loadAddBookForm(){
-	console.log("Works");
 	/* Show the form */
 	let form = document.getElementById("new-book-form-container");
 	if(form.style.display == "flex"){
@@ -12,6 +11,18 @@ function loadAddBookForm(){
 	}
 }
 
+function addBook(){
+	let title = document.getElementById("input-title").value;
+	let author = document.getElementById("input-author").value;
+	let pages = document.getElementById("input-pages").value;
+	let read = document.getElementById("input-read").value;
+	let book = new Book(title, author, pages, read);
+	library.books.push(book);
+	alert(library.books[0].info());
+}
+
 function pageLoaded(){
+	let form = document.getElementById("form");
+	form.addEventListener("submit", addBook, false);
 	/* render library */
 }
