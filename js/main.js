@@ -6,7 +6,7 @@ function pageLoaded(){
 	form.addEventListener("submit", addBook, false);
 
 	if(storageAvailable('localStorage')){
-		getFromStorage();
+		saveToStorage();
 		addClearStorageButton();
 	}else {
 		alert("WARNING! Your browser doesn't support local storage. To use this app \
