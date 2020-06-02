@@ -22,14 +22,14 @@ function addBook(){
 }
 
 function renderLibrary(){
-	for(let i = 0; i < library.books.length; i++){
-		console.log("there is a book");
-	}
+
 }
 
 function pageLoaded(){
 	let form = document.getElementById("form");
 	form.addEventListener("submit", addBook, false);
 	/* render library */
+	let defaultBook = new Book("The Hobbit", "J.R.R. Tolkien", 285, true);
+	library.books.push(defaultBook);
 	renderLibrary();
 }
