@@ -111,47 +111,56 @@ function addBook(){
 	saveToStorage();
 }
 
+function cleanLibrary(){
+	/* Clean the div */
+	let libraryContainer = document.getElementById("library");
+	while(libraryContainer.firstChild) {
+		libraryContainer.removeChild(libraryContainer.firstChild);
+	}
+	return Promise.resolve(true);
+}
+
 function renderLibrary(){
 	/* Display each book into the page */
 	let libraryContainer = document.getElementById("library");
 	let noBook = document.getElementById("no-book");
 
-	/* Clean the div */
-	while(libraryContainer.firstChild) {
-		libraryContainer.removeChild(libraryContainer.firstChild);
-	}
+	/* Async Call */
+	const isClean = cleanLibrary();
+	isClean.then(function(){
+		if(library.books.length != 0){
+			noBook.style.display = "none";
+			for(let i = 0; i < library.books.length; i++){
+				let book = document.createElement("div");
+				book.setAttribute("class", "book");
 
-	if(library.books.length != 0){
-		noBook.style.display = "none";
-		for(let i = 0; i < library.books.length; i++){
-			let book = document.createElement("div");
-			book.setAttribute("class", "book");
+				let bookInfo = document.createElement("h4");
+				bookInfo.innerHTML = library.books[i].info();
 
-			let bookInfo = document.createElement("h4");
-			bookInfo.innerHTML = library.books[i].info();
+				let btnContainer = document.createElement("div");
+				let btnBookRead = document.createElement("button");
+				btnBookRead.setAttribute("id", "btnRead" + i);
+				btnBookRead.setAttribute("class", "button warning btnRead");
+				btnBookRead.innerHTML = "Read It?";
+				let btnBookDelete = document.createElement("button");
+				btnBookDelete.setAttribute("id", "btnDelete" + i);
+				btnBookDelete.setAttribute("class", "button alert btnDelete");
+				btnBookDelete.innerHTML = "Delete";
+				btnContainer.appendChild(btnBookRead);
+				btnContainer.appendChild(btnBookDelete);
 
-			let btnContainer = document.createElement("div");
-			let btnBookRead = document.createElement("button");
-			btnBookRead.setAttribute("id", "btnRead" + i);
-			btnBookRead.setAttribute("class", "button warning btnRead");
-			btnBookRead.innerHTML = "Read It?";
-			let btnBookDelete = document.createElement("button");
-			btnBookDelete.setAttribute("id", "btnDelete" + i);
-			btnBookDelete.setAttribute("class", "button alert btnDelete");
-			btnBookDelete.innerHTML = "Delete";
-			btnContainer.appendChild(btnBookRead);
-			btnContainer.appendChild(btnBookDelete);
+				book.appendChild(bookInfo);
+				book.appendChild(btnContainer);
+				libraryContainer.appendChild(book);
+			}
 
-			book.appendChild(bookInfo);
-			book.appendChild(btnContainer);
-			libraryContainer.appendChild(book);
+			setReadItEvents();
+			setDeleteEvents();
+		}else{
+			noBook.style.display = "inline";
 		}
 
-		setReadItEvents();
-		setDeleteEvents();
-	}else{
-		noBook.style.display = "inline";
-	}
+	});
 }
 
 function readIt(index){
