@@ -164,6 +164,12 @@ function readIt(index){
 	renderLibrary();
 }
 
+function deleteIt(index){
+	library.books.splice(index, 1);
+	saveToStorage();
+	renderLibrary();
+}
+
 function setReadItEvents(){
 	let buttons = document.getElementsByClassName("btnRead");
 
@@ -176,7 +182,6 @@ function setDeleteEvents(){
 	let buttons = document.getElementsByClassName("btnDelete");
 
 	for(let i = 0; i < buttons.length; i++){
-		console.log(buttons[i].id);
-		console.log(i);
+		buttons[i].setAttribute("onclick", "deleteIt(" + i + ");");
 	}
 }
