@@ -73,12 +73,14 @@ function clearArray(arr){
 function addClearStorageButton(){
 	/* Display button into header */
 	let container = document.getElementById("buttons-container");
-	let clearStorage = document.createElement("button");
-	clearStorage.setAttribute("id", "btn-clear-storage");
-	clearStorage.setAttribute("class", "button");
-	clearStorage.setAttribute("onclick", "clearStorage();");
-	clearStorage.innerHTML = "Clear Storage";
-	container.appendChild(clearStorage);
+	let listItem = document.createElement("li");
+	let btnClearStorage = document.createElement("button");
+	btnClearStorage.setAttribute("id", "btn-clear-storage");
+	btnClearStorage.setAttribute("class", "button alert");
+	btnClearStorage.setAttribute("onclick", "clearStorage();");
+	btnClearStorage.innerHTML = "Clear Storage";
+	listItem.appendChild(btnClearStorage);
+	container.appendChild(listItem);
 }
 
 function clearStorage(){
