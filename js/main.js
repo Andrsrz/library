@@ -66,7 +66,8 @@ function getFromStorage(){
 }
 
 function clearArray(arr){
-	for(let i = 0; i < arr.length; i++){
+	let size = arr.length;
+	for(let i = 0; i <= size; i++){
 		arr.pop();
 	}
 	return arr;
