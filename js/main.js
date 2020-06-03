@@ -51,13 +51,15 @@ function getFromStorage(){
 	let storage = false;
 	library.books = clearArray(library.books);
 
-	let test = localStorage.getItem('libraryArr');
-	let arr = JSON.parse(test);
+	let booksLocalStorage = localStorage.getItem('libraryArr');
+	let books = JSON.parse(booksLocalStorage);
 
-	for(let i = 0; i < arr.length; i++){
-		storage = true;
-		let book = new Book(arr[i].title, arr[i].author, arr[i].pages, arr[i].read);
-		library.books.push(book);
+	if(books != null){
+		for(let i = 0; i < books.length; i++){
+			storage = true;
+			let book = new Book(books[i].title, books[i].author, books[i].pages, books[i].read);
+			library.books.push(book);
+		}
 	}
 
 	return storage;
