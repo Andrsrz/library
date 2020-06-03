@@ -8,6 +8,8 @@ Save all the books that you're interested in, inside your browser!
   * To have a persistent user settings. Kind of a database.
 * JSON parsing.
   * Very handy to work with objects and arrays.
+* [Foundation](https://get.foundation/index.html)
+  * CSS Framework.
 
 ## Acknowledgement
 This project was made posible thanks to [The Odin Project](https://www.theodinproject.com/)
