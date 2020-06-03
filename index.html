@@ -11,10 +11,15 @@
 		<link rel="stylesheet" href="style/foundation.css">
 	</head>
 	<body onload="pageLoaded();">
-		<header class="row" id="site-header">
-			<h1 id="header-title">Welcome to your Library!</h1>
-			<div id="buttons-container">
-				<button class="button" id="btn-add-book" onclick="loadAddBookForm();">New Book</button>
+		<header class="row top-bar" id="site-header">
+			<div class="top-bar-left">
+				<ul class="dropdown menu">
+					<li class="menu-text">Library</li>
+			</div>
+			<div class="top-bar-right">
+				<ul class="menu">
+					<li><button type="button" class="button" id="btn-add-book" onclick="loadAddBookForm();">New Book</button></li>
+				</ul>
 			</div>
 		</header>
 		<main id="site-main" class="row">
