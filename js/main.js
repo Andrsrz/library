@@ -75,10 +75,9 @@ function addClearStorageButton(){
 	let container = document.getElementById("buttons-container");
 	let clearStorage = document.createElement("button");
 	clearStorage.setAttribute("id", "btn-clear-storage");
+	clearStorage.setAttribute("class", "button");
 	clearStorage.setAttribute("onclick", "clearStorage();");
-	let text = document.createElement("h3");
-	text.innerHTML = "Clear Storage";
-	clearStorage.appendChild(text);
+	clearStorage.innerHTML = "Clear Storage";
 	container.appendChild(clearStorage);
 }
 
@@ -89,11 +88,11 @@ function clearStorage(){
 
 function loadAddBookForm(){
 	/* Show the form */
-	let form = document.getElementById("new-book-form-container");
-	if(form.style.display == "flex"){
+	let form = document.getElementById("form");
+	if(form.style.display == "inline"){
 		form.style.display = "none";
 	}else{
-		form.style.display = "flex";
+		form.style.display = "inline";
 	}
 }
 

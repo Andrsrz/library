@@ -18,48 +18,16 @@ html, body {
 	padding: 10px 10px 0 10px;
 }
 
-#site-main {
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-content: center;
-}
-
-#new-book-form-container {
-	display: none;
-	flex-flow: row nowrap;
-	justify-content: center;
-	align-content: center;
-}
-
-#form {
-	width: 30%;
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-content: center;
-}
-
-#form > input {
-	margin: 5px 0 20px 0;
-}
-
-.block {
-	display: inline;
-	text-align: center;
-	padding: 0 0 5px 0;
-}
-
-.block > label {
-	margin: 0 10px 0 0;
-}
-
 #library {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: flex-start;
 	align-content: center;
 	padding: 0 10px 0 10px;
+}
+
+#form {
+	display: none;
 }
 
 .book {
