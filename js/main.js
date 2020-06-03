@@ -80,7 +80,7 @@ function addClearStorageButton(){
 	btnClearStorage.setAttribute("id", "btn-clear-storage");
 	btnClearStorage.setAttribute("class", "button alert");
 	btnClearStorage.setAttribute("onclick", "clearStorage();");
-	btnClearStorage.innerHTML = "Clear Storage";
+	btnClearStorage.innerHTML = "Delete Library";
 	listItem.appendChild(btnClearStorage);
 	container.appendChild(listItem);
 }
