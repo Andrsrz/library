@@ -116,6 +116,11 @@ function renderLibrary(){
 	let libraryContainer = document.getElementById("library");
 	let noBook = document.getElementById("no-book");
 
+	/* Clean the div */
+	while(libraryContainer.firstChild) {
+		libraryContainer.removeChild(libraryContainer.firstChild);
+	}
+
 	if(library.books.length != 0){
 		noBook.style.display = "none";
 		for(let i = 0; i < library.books.length; i++){
@@ -128,11 +133,11 @@ function renderLibrary(){
 			let btnContainer = document.createElement("div");
 			let btnBookRead = document.createElement("button");
 			btnBookRead.setAttribute("id", "btnRead" + i);
-			btnBookRead.setAttribute("class", "button warning");
+			btnBookRead.setAttribute("class", "button warning btnRead");
 			btnBookRead.innerHTML = "Read It?";
 			let btnBookDelete = document.createElement("button");
 			btnBookDelete.setAttribute("id", "btnDelete" + i);
-			btnBookDelete.setAttribute("class", "button alert");
+			btnBookDelete.setAttribute("class", "button alert btnDelete");
 			btnBookDelete.innerHTML = "Delete";
 			btnContainer.appendChild(btnBookRead);
 			btnContainer.appendChild(btnBookDelete);
@@ -141,7 +146,37 @@ function renderLibrary(){
 			book.appendChild(btnContainer);
 			libraryContainer.appendChild(book);
 		}
+
+		setReadItEvents();
+		setDeleteEvents();
 	}else{
 		noBook.style.display = "inline";
+	}
+}
+
+function readIt(index){
+	if(library.books[index].read == false){
+		library.books[index].read = true;
+	}else{
+		library.books[index].read = false;
+	}
+	saveToStorage();
+	renderLibrary();
+}
+
+function setReadItEvents(){
+	let buttons = document.getElementsByClassName("btnRead");
+
+	for(let i = 0; i < buttons.length; i++){
+		buttons[i].setAttribute("onclick", "readIt(" + i + ");");
+	}
+}
+
+function setDeleteEvents(){
+	let buttons = document.getElementsByClassName("btnDelete");
+
+	for(let i = 0; i < buttons.length; i++){
+		console.log(buttons[i].id);
+		console.log(i);
 	}
 }
