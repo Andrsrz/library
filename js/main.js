@@ -127,9 +127,11 @@ function renderLibrary(){
 
 			let btnContainer = document.createElement("div");
 			let btnBookRead = document.createElement("button");
+			btnBookRead.setAttribute("id", "btnRead" + i);
 			btnBookRead.setAttribute("class", "button warning");
 			btnBookRead.innerHTML = "Read It?";
 			let btnBookDelete = document.createElement("button");
+			btnBookDelete.setAttribute("id", "btnDelete" + i);
 			btnBookDelete.setAttribute("class", "button alert");
 			btnBookDelete.innerHTML = "Delete";
 			btnContainer.appendChild(btnBookRead);
