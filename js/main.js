@@ -91,10 +91,10 @@ function clearStorage(){
 function loadAddBookForm(){
 	/* Show the form */
 	let form = document.getElementById("form");
-	if(form.style.display == "inline"){
+	if(form.style.display == "flex"){
 		form.style.display = "none";
 	}else{
-		form.style.display = "inline";
+		form.style.display = "flex";
 	}
 }
 

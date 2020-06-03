@@ -28,6 +28,11 @@ html, body {
 
 #form {
 	display: none;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-content: center;
+	width: 50%;
+	margin: auto;
 }
 
 .book {
