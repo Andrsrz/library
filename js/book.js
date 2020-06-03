@@ -1,23 +1,17 @@
-class Book{
-	/* Default properties values */
-	title = "";
-	author = "";
-	pages = 0;
-	read = false;
+const Book = (title, author, pages, read) => {
+	const getTitle = () => title;
+	const getAuthor = () => author;
+	const getPages = () => pages;
+	const getRead = () => read;
 
-	constructor(title, author, pages, read){
-		this.title = title;
-		this.author = author;
-		this.pages = pages;
-		this.read = read;
-	}
-
-	info(){
+	const info = () => {
 		let readStr = "";
-		if(this.read === false)
+		if(getRead() === false)
 			readStr = "not read yet";
 		else
 			readStr = "read";
-		return this.title + " by " + this.author + ", " + this.pages + " pages, " + readStr + ".";
-	}
-}
+		return getTitle() + " by " + getAuthor() + ", " + getPages() + " pages, " + readStr + ".";
+	};
+
+	return {info, getTitle, getAuthor, getPages, getRead};
+};

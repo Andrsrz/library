@@ -1,12 +1,9 @@
-class Library{
-	/* Default properties values */
-	books = [];
+const Library = () => {
+	const books = [];
 
-	constructor(){
-		/* Empty */
-	}
-
-	addBook(book){
+	const addBook = book => {
 		this.books.push(book);
-	}
-}
+	};
+
+	return {books, addBook};
+};

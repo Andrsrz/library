@@ -1,5 +1,5 @@
 /* Global Library Object */
-var library = new Library();
+var library = Library();
 
 function pageLoaded(){
 	let form = document.getElementById("form");
@@ -57,7 +57,8 @@ function getFromStorage(){
 	if(books != null){
 		for(let i = 0; i < books.length; i++){
 			storage = true;
-			let book = new Book(books[i].title, books[i].author, books[i].pages, books[i].read);
+			/* Get attributes from the JSON */
+			let book = Book(books[i].title, books[i].author, books[i].pages, books[i].read);
 			library.books.push(book);
 		}
 	}
@@ -107,7 +108,7 @@ function addBook(){
 	let author = document.getElementById("input-author").value;
 	let pages = document.getElementById("input-pages").value;
 	let read = document.getElementById("input-read").value;
-	let book = new Book(title, author, pages, read);
+	let book = Book(title, author, pages, read);
 	library.books.push(book);
 	saveToStorage();
 }
