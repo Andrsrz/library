@@ -115,14 +115,28 @@ function renderLibrary(){
 	/* Display each book into the page */
 	let libraryContainer = document.getElementById("library");
 	let noBook = document.getElementById("no-book");
+
 	if(library.books.length != 0){
 		noBook.style.display = "none";
 		for(let i = 0; i < library.books.length; i++){
 			let book = document.createElement("div");
 			book.setAttribute("class", "book");
+
 			let bookInfo = document.createElement("h4");
 			bookInfo.innerHTML = library.books[i].info();
+
+			let btnContainer = document.createElement("div");
+			let btnBookRead = document.createElement("button");
+			btnBookRead.setAttribute("class", "button warning");
+			btnBookRead.innerHTML = "Read It?";
+			let btnBookDelete = document.createElement("button");
+			btnBookDelete.setAttribute("class", "button alert");
+			btnBookDelete.innerHTML = "Delete";
+			btnContainer.appendChild(btnBookRead);
+			btnContainer.appendChild(btnBookDelete);
+
 			book.appendChild(bookInfo);
+			book.appendChild(btnContainer);
 			libraryContainer.appendChild(book);
 		}
 	}else{
